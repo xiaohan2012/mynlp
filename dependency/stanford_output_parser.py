@@ -133,7 +133,7 @@ class DepParseResult(object):
     -------
     
     >>> from codecs import open
-    >>> t = parse_output(open("data/test_parse_tree.txt", "r", "utf8"))[0]
+    >>> t = parse_output(open("test_data/test_parse_tree.txt", "r", "utf8")).next()
     >>> dot_str = t.to_dot()
     """
     def __init__(self, sent_id, sentence, nodes, edges):
@@ -255,19 +255,19 @@ def parse_output(obj):
     The edges
 
     >>> from codecs import open
-    >>> t1 = parse_output(open("data/test_parse_tree.txt", "r", "utf8"))
+    >>> t1 = list(parse_output(open("test_data/test_parse_tree.txt", "r", "utf8")))
     >>> len(t1)
     1
-    >>> t2 = parse_output(open("data/test_parse_tree.txt", "r", "utf8").read())
+    >>> t2 = list(parse_output(open("test_data/test_parse_tree.txt", "r", "utf8").read()))
     >>> len(t2)
     1
     >>> assert t1[0].nodes == t2[0].nodes
     >>> assert t1[0].edges == t2[0].edges
     >>> print t1[0].nodes
-    [ROOT-0, Schneider(NNP)-1, Electric(NNP)-2, Introduces(VBZ)-3, Strategic(NNP)-4, Operation(NNP)-5, Services(NNPS)-6, Offerings(NNPS])-7]
+    [ROOT-0, Schneider(NNP)-1, Electric(NNP)-2, Introduces(VBZ)-3, Strategic(NNP)-4, Operation(NNP)-5, Services(NNPS)-6, Offerings(NNPS)-7]
     >>> print t1[0].edges
-    [(ROOT-0, Introduces(VBZ)-3, root), (Electric(NNP)-2, Schneider(NNP)-1, nn), (Introduces(VBZ)-3, Electric(NNP)-2, nsubj), (Offerings(NNPS])-7, Strategic(NNP)-4, nn), (Offerings(NNPS])-7, Operation(NNP)-5, nn), (Offerings(NNPS])-7, Services(NNPS)-6, nn), (Introduces(VBZ)-3, Offerings(NNPS])-7, dobj)]
-    >>> t3 = parse_output(open("data/test_parse_tree_multi_sent_case.txt", "r", "utf8").read())
+    [(ROOT-0, Introduces(VBZ)-3, root), (Electric(NNP)-2, Schneider(NNP)-1, nn), (Introduces(VBZ)-3, Electric(NNP)-2, nsubj), (Offerings(NNPS)-7, Strategic(NNP)-4, nn), (Offerings(NNPS)-7, Operation(NNP)-5, nn), (Offerings(NNPS)-7, Services(NNPS)-6, nn), (Introduces(VBZ)-3, Offerings(NNPS)-7, dobj)]
+    >>> t3 = list(parse_output(open("test_data/test_parse_tree_multi_sent_case.txt", "r", "utf8").read()))
     >>> len(t3) 
     2
     """
@@ -278,8 +278,6 @@ def parse_output(obj):
         assert hasattr(obj, 'readline'), "obj should have `readline` method "
         assert hasattr(obj, 'readlines'), "obj should have `readlines` method "
         
-    results = []
-    
     sent_id = 1
     
     # spends the first line as it's useless        
@@ -301,10 +299,9 @@ def parse_output(obj):
                 break
             edges.append(parse_edge_line(l.strip(), nodes))
             
-        results.append(DepParseResult(sent_id, sentence, nodes, edges))
+        yield DepParseResult(sent_id, sentence, nodes, edges)
         sent_id += 1
 
-    return results
 
 if __name__ == "__main__":
     import argparse, os

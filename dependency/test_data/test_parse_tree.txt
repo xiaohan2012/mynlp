@@ -1,0 +1,10 @@
+Sentence #1 (7 tokens):
+Schneider Electric Introduces Strategic Operation Services Offerings
+[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP] [Text=Introduces CharacterOffsetBegin=19 CharacterOffsetEnd=29 PartOfSpeech=VBZ] [Text=Strategic CharacterOffsetBegin=30 CharacterOffsetEnd=39 PartOfSpeech=NNP] [Text=Operation CharacterOffsetBegin=40 CharacterOffsetEnd=49 PartOfSpeech=NNP] [Text=Services CharacterOffsetBegin=50 CharacterOffsetEnd=58 PartOfSpeech=NNPS] [Text=Offerings CharacterOffsetBegin=59 CharacterOffsetEnd=68 PartOfSpeech=NNPS]
+root(ROOT-0, Introduces-3)
+nn(Electric-2, Schneider-1)
+nsubj(Introduces-3, Electric-2)
+nn(Offerings-7, Strategic-4)
+nn(Offerings-7, Operation-5)
+nn(Offerings-7, Services-6)
+dobj(Introduces-3, Offerings-7)
