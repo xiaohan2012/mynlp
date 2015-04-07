@@ -1,10 +1,12 @@
 import sys
 
+TOKENIZE="tokenize"
 DIGITALIZE = "digit"
 LOWERCASE = "lower"
+STEM = "stem"
 
-ALL_PIPELINE_NAMES = [DIGITALIZE, LOWERCASE]
-DEFAULT_PIPELINE_NAMES = [DIGITALIZE, LOWERCASE]
+ALL_PIPELINE_NAMES = [TOKENIZE, DIGITALIZE, LOWERCASE, STEM]
+DEFAULT_PIPELINE_NAMES = [TOKENIZE, DIGITALIZE, LOWERCASE]
 
 _pipelines = {p: None
              for p in ALL_PIPELINE_NAMES}
@@ -24,14 +26,20 @@ def load_pipeline(name):
     """
     global _pipelines
     if not is_loaded(name):
-        if name == DIGITALIZE:
+        if name == TOKENIZE:
+            from tok import Tokenizer
+            obj = Tokenizer()
+        elif name == DIGITALIZE:
             from digit import Digitalizer
             obj = Digitalizer()
         elif name == LOWERCASE:
             from case import Lowercaser
             obj = Lowercaser()
+        elif name == STEM:
+            from stem import Stemmer
+            obj = Stemmer()
         else:
-            raise ValueError("Invalid pipeline name")
+            raise ValueError("Invalid pipeline name '%s'" %(name))
         
         _pipelines[name] = obj
         sys.stderr.write("%s loaded\n" %(name))
@@ -41,11 +49,12 @@ def load_pipeline(name):
     
 def transform(stuff, pipelines = DEFAULT_PIPELINE_NAMES):
     """
-    
     >>> transform(["A1", "a12", "C3"], pipelines = ["lower", "digit"])
     ['aDIGIT', 'aDIGITDIGIT', 'cDIGIT']
     >>> transform("A1 a12 C3", pipelines = ["lower", "digit"])
     'aDIGIT aDIGITDIGIT cDIGIT'
+    >>> transform("Giving it to me generously", pipelines = ["tokenize", "stem"])
+    [u'give', 'it', 'to', 'me', u'generous']
     """
     global _pipelines
     for name in pipelines:
