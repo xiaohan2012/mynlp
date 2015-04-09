@@ -29,36 +29,31 @@ class Node(object):
     >>> n1 == n3
     True
     >>> print n1
-    Big(ADJ)-1
+    Big-1
     >>> print n2
     Bang-0
-    >>> n4 = Node(u"EnCompass®", 1)
-    >>> print n4
-    EnCompass®-1
     >>> n = Node.load_from_str(u"Systems-14")
     >>> print n
     Systems-14
     >>> n = Node.load_from_str(u"Systems-14", {14: Node(u'Systems', 14, "NN")})
     >>> print n
-    Systems(NN)-14
+    Systems-14
     >>> n = Node.load_from_str(u"system-design-14", {14: Node(u'system-design', 14, "NN")})
     >>> print n
-    system-design(NN)-14
+    system-design-14
     >>> n = Node.load_from_str(u"feng-1", [Node('ROOT', 0), Node('feng', 1, "BB")])
     >>> print n
-    feng(BB)-1
+    feng-1
 
     """
-    def __init__(self, token, index, pos_tag=None):
+    def __init__(self, token, index, pos_tag=None, lemma = None):
         self.token = token
         self.index = index
         self.pos_tag = pos_tag
+        self.lemma = lemma
     
     def __unicode__(self):
-        if self.index == 0 or self.pos_tag == None:
-            return u"%s-%d" %(self.token, self.index)
-        else:
-            return u"%s(%s)-%d" %(self.token, self.pos_tag, self.index)
+        return u"%s-%d" %(self.token, self.index)
             
     def __repr__(self):
         return unicode(self).encode("utf8")
@@ -161,8 +156,10 @@ class DepParseResult(object):
         output += u'};\n'
         return output
 
-find_seg_regexp = re.compile(r"\[(\S+\s?){4}\]")
-def parse_token_pos_line(l, prepend_root = True):
+STANFORD_ATTRIBUTES = {"Text": {"name": "token", "type": unicode}, 
+                       "PartOfSpeech": {"name": "pos_tag", "type": str}, 
+                       "Lemma": {"name": "lemma", "type": str}}
+def parse_token_line(l, prepend_root = True):
     """
     Parsing the line containing tokens and POS tags information
 
@@ -172,27 +169,32 @@ def parse_token_pos_line(l, prepend_root = True):
     prepend_root: bool
          If True, root is automatically prepended to the list
     
-    >>> print parse_token_pos_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = True)
-    [ROOT-0, Schneider(NNP)-1, Electric(NNP)-2]
-    >>> print parse_token_pos_line("[Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = False)
-    [Electric(NNP)-1]
-    """
-
+    >>> print parse_token_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = True)
+    [ROOT-0, Schneider-1, Electric-2]
+    >>> print parse_token_line("[Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = False)
+    [Electric-1]
+    """        
     def parse_seg(seg_str):
-        text_str, _, _, pos_str = seg_str.split()
-        try:
-            return text_str.split('=')[1], pos_str.split('=')[1]
-        except IndexError:
-            raise IndexError("text_str=%s, pos_str=%s" %(text_str, pos_str))
-
+        attribs = {}
+        for seg in seg_str.split():
+            name, raw_value = seg.split('=')
+            if name in STANFORD_ATTRIBUTES:
+                attr = STANFORD_ATTRIBUTES[name]
+                if attr["type"] not in (unicode, str):
+                    value = attr["type"](raw_value)
+                else:
+                    value = raw_value
+                attribs[attr["name"]] = value
+        return attribs
     segs = l.strip()[1:-1].split('] [')
     nodes = (
         [ROOT] if prepend_root else []
      )
 
     for i, seg in enumerate(segs):
-        token, pos = parse_seg(seg)
-        nodes.append(Node(token, i+1, pos))
+        attr = parse_seg(seg)
+        attr["index"] = i+1
+        nodes.append(Node(**attr))
 
     return nodes
 
@@ -218,11 +220,11 @@ def parse_edge_line(l, nodes):
     Examples:
     -------------
 
-    >>> nodes = parse_token_pos_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP] [Text=Introduces CharacterOffsetBegin=19 CharacterOffsetEnd=29 PartOfSpeech=VBZ] [Text=Strategic CharacterOffsetBegin=30 CharacterOffsetEnd=39 PartOfSpeech=NNP] [Text=Operation CharacterOffsetBegin=40 CharacterOffsetEnd=49 PartOfSpeech=NNP] [Text=Services CharacterOffsetBegin=50 CharacterOffsetEnd=58 PartOfSpeech=NNPS] [Text=Offerings CharacterOffsetBegin=59 CharacterOffsetEnd=68 PartOfSpeech=NNPS] [Text=to CharacterOffsetBegin=69 CharacterOffsetEnd=71 PartOfSpeech=TO] [Text=Simplify CharacterOffsetBegin=72 CharacterOffsetEnd=80 PartOfSpeech=VB] [Text=and CharacterOffsetBegin=81 CharacterOffsetEnd=84 PartOfSpeech=CC] [Text=Optimise CharacterOffsetBegin=85 CharacterOffsetEnd=93 PartOfSpeech=NNP] [Text=Data CharacterOffsetBegin=94 CharacterOffsetEnd=98 PartOfSpeech=NNP] [Text=Centre CharacterOffsetBegin=99 CharacterOffsetEnd=105 PartOfSpeech=NNP] [Text=Systems CharacterOffsetBegin=106 CharacterOffsetEnd=113 PartOfSpeech=NNPS]")
+    >>> nodes = parse_token_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP] [Text=Introduces CharacterOffsetBegin=19 CharacterOffsetEnd=29 PartOfSpeech=VBZ] [Text=Strategic CharacterOffsetBegin=30 CharacterOffsetEnd=39 PartOfSpeech=NNP] [Text=Operation CharacterOffsetBegin=40 CharacterOffsetEnd=49 PartOfSpeech=NNP] [Text=Services CharacterOffsetBegin=50 CharacterOffsetEnd=58 PartOfSpeech=NNPS] [Text=Offerings CharacterOffsetBegin=59 CharacterOffsetEnd=68 PartOfSpeech=NNPS] [Text=to CharacterOffsetBegin=69 CharacterOffsetEnd=71 PartOfSpeech=TO] [Text=Simplify CharacterOffsetBegin=72 CharacterOffsetEnd=80 PartOfSpeech=VB] [Text=and CharacterOffsetBegin=81 CharacterOffsetEnd=84 PartOfSpeech=CC] [Text=Optimise CharacterOffsetBegin=85 CharacterOffsetEnd=93 PartOfSpeech=NNP] [Text=Data CharacterOffsetBegin=94 CharacterOffsetEnd=98 PartOfSpeech=NNP] [Text=Centre CharacterOffsetBegin=99 CharacterOffsetEnd=105 PartOfSpeech=NNP] [Text=Systems CharacterOffsetBegin=106 CharacterOffsetEnd=113 PartOfSpeech=NNPS]")
     >>> parse_edge_line(u"root(ROOT-0, Introduces-3)", nodes)
-    (ROOT-0, Introduces(VBZ)-3, root)
+    (ROOT-0, Introduces-3, root)
     >>> parse_edge_line(u"nn(Systems-14, Centre-13)", nodes)
-    (Systems(NNPS)-14, Centre(NNP)-13, nn)
+    (Systems-14, Centre-13, nn)
     """
     try:
         paren_pos = l.index('(') # pos of the first paren, where we split
@@ -264,12 +266,12 @@ def parse_output(obj):
     >>> assert t1[0].nodes == t2[0].nodes
     >>> assert t1[0].edges == t2[0].edges
     >>> print t1[0].nodes
-    [ROOT-0, Schneider(NNP)-1, Electric(NNP)-2, Introduces(VBZ)-3, Strategic(NNP)-4, Operation(NNP)-5, Services(NNPS)-6, Offerings(NNPS)-7]
+    [ROOT-0, Schneider-1, Electric-2, Introduces-3, Strategic-4, Operation-5, Services-6, Offerings-7]
     >>> print t1[0].edges
-    [(ROOT-0, Introduces(VBZ)-3, root), (Electric(NNP)-2, Schneider(NNP)-1, nn), (Introduces(VBZ)-3, Electric(NNP)-2, nsubj), (Offerings(NNPS)-7, Strategic(NNP)-4, nn), (Offerings(NNPS)-7, Operation(NNP)-5, nn), (Offerings(NNPS)-7, Services(NNPS)-6, nn), (Introduces(VBZ)-3, Offerings(NNPS)-7, dobj)]
+    [(ROOT-0, Introduces-3, root), (Electric-2, Schneider-1, nn), (Introduces-3, Electric-2, nsubj), (Offerings-7, Strategic-4, nn), (Offerings-7, Operation-5, nn), (Offerings-7, Services-6, nn), (Introduces-3, Offerings-7, dobj)]
     >>> t3 = list(parse_output(open("test_data/test_parse_tree_multi_sent_case.txt", "r", "utf8").read()))
     >>> len(t3) 
-    2
+    4
     """
     SENT_PREFIX = "Sentence #"
     if isinstance(obj, basestring):
@@ -289,13 +291,19 @@ def parse_output(obj):
         if len(sentence) == 0: #end of story
             break
             
-        nodes = parse_token_pos_line(obj.readline(),  
+        nodes = parse_token_line(obj.readline(),  
                                      prepend_root = True)
         edges = []
-        for l in obj:
+        empty_line_times = 0
+        while True:
+            l = obj.readline()
+            if empty_line_times >= 2:
+                break
             if len(l.strip()) == 0: # skip non-sense lines
+                empty_line_times += 1
                 continue
             if l.startswith(SENT_PREFIX):
+                empty_line_times = 0
                 break
             edges.append(parse_edge_line(l.strip(), nodes))
             
