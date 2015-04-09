@@ -14,6 +14,7 @@ import re
 import operator
 import textwrap
 from StringIO import StringIO
+from nltk.tag.mapping import map_tag
 
 __all__ = ["parse_output"]
 
@@ -156,8 +157,10 @@ class DepParseResult(object):
         output += u'};\n'
         return output
 
+map_tag_to_universal = lambda tag: map_tag('en-ptb', 'universal', tag)
+
 STANFORD_ATTRIBUTES = {"Text": {"name": "token", "type": unicode}, 
-                       "PartOfSpeech": {"name": "pos_tag", "type": str}, 
+                       "PartOfSpeech": {"name": "pos_tag", "type": str, "mapping_func": map_tag_to_universal}, 
                        "Lemma": {"name": "lemma", "type": str}}
 def parse_token_line(l, prepend_root = True):
     """
@@ -180,7 +183,7 @@ def parse_token_line(l, prepend_root = True):
     >>> tokens[0].index
     1
     >>> tokens[0].pos_tag
-    u'PRP'
+    u'PRON'
     >>> tokens[0].lemma
     u'I'
     """        
@@ -194,7 +197,11 @@ def parse_token_line(l, prepend_root = True):
                     value = attr["type"](raw_value)
                 else:
                     value = raw_value
+                if "mapping_func" in attr:
+                    value = attr["mapping_func"](value)
+
                 attribs[attr["name"]] = value
+
         return attribs
     segs = l.strip()[1:-1].split('] [')
     nodes = (
