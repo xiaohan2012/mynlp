@@ -169,10 +169,20 @@ def parse_token_line(l, prepend_root = True):
     prepend_root: bool
          If True, root is automatically prepended to the list
     
-    >>> print parse_token_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = True)
+    >>> tokens = parse_token_line(u"[Text=Schneider CharacterOffsetBegin=0 CharacterOffsetEnd=9 PartOfSpeech=NNP] [Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = True)
+    >>> print tokens
     [ROOT-0, Schneider-1, Electric-2]
     >>> print parse_token_line("[Text=Electric CharacterOffsetBegin=10 CharacterOffsetEnd=18 PartOfSpeech=NNP]", prepend_root = False)
     [Electric-1]
+    >>> tokens = parse_token_line(u"[Text=I CharacterOffsetBegin=0 CharacterOffsetEnd=1 PartOfSpeech=PRP Lemma=I] [Text=love CharacterOffsetBegin=2 CharacterOffsetEnd=6 PartOfSpeech=VBP Lemma=love] [Text=you CharacterOffsetBegin=7 CharacterOffsetEnd=10 PartOfSpeech=PRP Lemma=you]", prepend_root = False)
+    >>> tokens[0].token
+    u'I'
+    >>> tokens[0].index
+    1
+    >>> tokens[0].pos_tag
+    u'PRP'
+    >>> tokens[0].lemma
+    u'I'
     """        
     def parse_seg(seg_str):
         attribs = {}
