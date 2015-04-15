@@ -61,6 +61,7 @@ class DependencyTree(object):
             self.n2nl[s] = (e, l)
             
         self.all_nodes = all_nodes
+        self.nodes = all_nodes
         self.wp2node = {(convert_bracket_for_token(n.token), n.index): n
                         for n in all_nodes}
         

@@ -18,10 +18,14 @@ class FreebaseAnnotator(object):
     >>> anns = annotator.annotate('Viacom Inc. and Apple Computers released a new phone .'.split())
     >>> len(anns)
     3
+    >>> anns = annotator.annotate('Google and Samsung strike patent cross-licensing deal'.split())
+    >>> print [a['name'] for _,a in anns]
+    [u'Google', u'Samsung Electronics']
     >>> import os
     >>> os.remove(FREEBASE_DUMP_PATH)
     """
-    def __init__(self, kb_path, kb_raw_path=None):
+    DEFAULT_MODEL_PATH = str(Path(__file__).resolve().parent) + '/models/freebase.pkl'
+    def __init__(self, kb_path = DEFAULT_MODEL_PATH, kb_raw_path=None):
         if not Path(kb_path).exists():
             if not Path(kb_raw_path).exists():
                 raise IOError('%s does not exist' % kb_raw_path)
@@ -37,10 +41,13 @@ class FreebaseAnnotator(object):
     def _process_kb_raw(self, path):
         self._trie = MultiSetTrie()
         with codecs.open(path, 'r', 'utf8') as f:
-            for l in f:
+            for i,l in enumerate(f):
+                if (i+1)%1000 == 0:
+                    print "%d processed" % (i+1)
                 item = simplejson.loads(l)
+                names = item["/common/topic/alias"] + [item["name"]]
                 paths = [alias.split()
-                         for alias in item["/common/topic/alias"]]
+                         for alias in names]
                 values = [item] * len(paths)
                 self._trie.add_paths(paths, values)
         return self._trie
@@ -53,20 +60,23 @@ class FreebaseAnnotator(object):
         Return:
         the annotations: list of ((start_token_index, end_token_index), {annotation info})
 
+        Note: one annotation contains another, then the longer one is kept
         """
         ans = []
+        last_terminal_value = None
         for i in xrange(len(tokens)):
             for j in xrange(i, len(tokens)):
                 try:
                     self._trie.take(tokens[j])
                 except InvalidTransition:
                     self._trie.reset()
+                    if last_terminal_value:
+                        for value in last_terminal_value:
+                            ans.append(((i, j-1), value))
+                        last_terminal_value = None
                     break
-                values = self._trie.terminal_values()
-                if values:
-                    for value in values:
-                        ans.append(((i,j), value))
-        
+                last_terminal_value = self._trie.terminal_values()
         return ans
 
-
+if __name__ == "__main__":
+    FreebaseAnnotator('models/freebase.pkl','/cs/taatto/home/hxiao/product_classification/resources/freebase')
