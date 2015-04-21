@@ -1,13 +1,13 @@
-from nltk.tree import (Tree, ParentedTree)
+from nltk.tree import (Tree, ImmutableParentedTree)
 
-class MatchAllNode(ParentedTree):
+class MatchAllNode(ImmutableParentedTree):
     def __init__(self):
         super(MatchAllNode, self).__init__("*", ["*"])
         
     def __eq__(self, other):
         return True
 
-class BaseRegexp(ParentedTree):
+class BaseRegexp(ImmutableParentedTree):
     pass
 
 class TreeRegexp(BaseRegexp):
