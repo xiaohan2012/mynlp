@@ -1,4 +1,5 @@
 from collections import defaultdict
+import operator
 
 class InvalidTransition(Exception):
     pass
@@ -138,3 +139,29 @@ class MultiSetTrie(Trie):
             for o in iterable:
                 cur_dict = cur_dict.setdefault(o, defaultdict(list))
             cur_dict[self.last_key].append(value)
+
+
+class EntityMatchingTrie(Trie):
+    """
+
+    >>> t = EntityMatchingTrie()
+    >>> t.add_mention('cs', set(['computer science', 'counter strike']))
+    >>> t.add_mention('csd', set(['computer science department']))
+    >>> t.matched_keywords('csd')
+    set(['computer science department'])
+    """
+    def add_mention(self, mention, entities):
+        self.add_paths([mention], lambda o: entities)
+
+    def matched_keywords(self, s):
+        for c in s:
+            try:
+                self.take(c)
+            except InvalidTransition:
+                return []
+
+        # wierd order
+        ans = max(self.matching_paths(), 
+                  key = lambda (path, val): len(path))[1]
+        self.reset()
+        return ans
