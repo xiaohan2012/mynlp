@@ -5,7 +5,7 @@ from sklearn.metrics.pairwise import pairwise_distances
 
 def construct_hierarchy_recursively(Y, labels, k, 
                                     max_iter=20,
-                                    rng=np.random.RandomState(123456)):
+                                    random_state=None):
     def aux(Y, labels, k):
 
         if Y.shape[1] <= k:
@@ -14,12 +14,10 @@ def construct_hierarchy_recursively(Y, labels, k,
             hierarchy = []
 
             label_partitions = balanced_kmeans(Y, k, max_iter=max_iter,
-                                               rng=rng)
-
+                                               random_state=random_state)
             for partition in label_partitions:
                 # convert it to slice-compatible type
                 partition = list(partition)
-                print partition
                 subset_labels = [labels[ind] for ind in partition]
                 subset_Y = Y[np.any(Y[:, partition], axis=1), :][:, partition]
                 ans = aux(subset_Y,
@@ -33,7 +31,7 @@ def construct_hierarchy_recursively(Y, labels, k,
 def balanced_kmeans(Y, k,
                     centroids=None,
                     max_iter=20,
-                    rng=np.random.RandomState(123456)):
+                    random_state=None):
     '''
     Y: columns of label features, each column corresponds to one label
     k: number of clusters to have
@@ -49,6 +47,7 @@ def balanced_kmeans(Y, k,
 
     if not centroids:
         # sample k random centroids
+        rng = np.random.RandomState(random_state)
         centroids = rng.permutation(label_n)[:k]
     
     centroid_vecs = Y_t[centroids, :]
@@ -76,7 +75,6 @@ def balanced_kmeans(Y, k,
             for i in sorted_centroids.flatten():
                 c = centroids[i]
                 if len(clusters[c]) < max_cluster_size:
-
                     # find the closest centroid that still has capacity
                     clusters[c].add(l)
                         
@@ -96,22 +94,22 @@ def balanced_kmeans(Y, k,
     return previous_clusters.values()
 
 
-class HOMER(object):
-    def __init__(self, br_clf, k):
-        '''
-        br_clf: the name of the binary relevance classifier
-        '''
-        self.br_clf = br_clf
-        self.k = k
+# class HOMER(object):
+#     def __init__(self, br_clf, k):
+#         '''
+#         br_clf: the name of the binary relevance classifier
+#         '''
+#         self.br_clf = br_clf
+#         self.k = k
 
-    def fit(self, X, Y):
-        # partition the label set
-        # using contrained k-means
-        pass
+#     def fit(self, X, y):
+#         # partition the label set
+#         # using contrained k-means
+#         pass
 
-    def transform(self, X):
-        pass
+#     def transform(self, X):
+#         pass
 
-    def fit_transform(self, X, Y):
-        self.fit(X, Y)
-        return self.transform(X)
+#     def fit_transform(self, X, Y):
+#         self.fit(X, Y)
+#         return self.transform(X)

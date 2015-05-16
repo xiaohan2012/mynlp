@@ -2,7 +2,7 @@ import numpy as np
 from nose.tools import assert_equal
 from .homer import (balanced_kmeans, construct_hierarchy_recursively)
 
-def test_balanced_kmeans_sample():
+def test_balanced_kmeans_simple():
     Y = np.asarray([[1, 1, 0, 0],
                     [1, 1, 0, 0],
                     [0, 0, 1, 1],
@@ -19,7 +19,7 @@ def test_balanced_kmeans_sample():
     # the result is random
     # not sure if the test will
     # pass on a different computer
-    actual = balanced_kmeans(Y, k=2)
+    actual = balanced_kmeans(Y, k=2, random_state=123456)
     expected = [set([2, 3]), set([0, 1])]
 
     assert_equal(actual, expected)
@@ -69,9 +69,9 @@ def test_construct_hierarchy_recursively():
     actual = construct_hierarchy_recursively(
         Y,
         labels=['a', 'A', 'b', 'B', 'c'],
-        k=2)
+        k=2, 
+        random_state=12345)
 
     expected = [[['c'], ['a', 'A']], ['b', 'B']]
     
     assert_equal(actual, expected)
-    
