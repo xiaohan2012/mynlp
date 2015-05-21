@@ -6,15 +6,15 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import LinearSVC
 from homer import HOMER
 
-# X_path = '/cs/puls/Experiments/hxiao-test/feature-data.mat'
-X_path = '/cs/puls/Experiments/hxiao-test/original-esmerk-sectors-PC50_PROJ.mat'
+X_path = '/cs/puls/Experiments/hxiao-test/feature-data.mat'
+# X_path = '/cs/puls/Experiments/hxiao-test/original-esmerk-sectors-PC50_PROJ.mat'
 Y_path = '/cs/puls/Experiments/hxiao-test/label-data.mat'
 label_path = '/cs/puls/Experiments/hxiao-test/sector-labels'
 
-RANDOM_PROJECTION_FLAG = False
+RANDOM_PROJECTION_FLAG = True
 
-# X = loadmat(X_path)['featureData']
-X = loadmat(X_path)['projection']
+X = loadmat(X_path)['featureData']
+# X = loadmat(X_path)['projection']
 
 if RANDOM_PROJECTION_FLAG:
     from sklearn.random_projection import SparseRandomProjection
@@ -32,8 +32,8 @@ y = loadmat(Y_path)['labelData']
 with open(label_path, 'r') as f:
     label_names = map(lambda l: l.strip(), f.readlines())
 
-import pdb
-pdb.set_trace()
+# import pdb
+# pdb.set_trace()
 
 model = HOMER(base_clf=OneVsRestClassifier(LinearSVC(random_state=0),
                                            n_jobs=3),

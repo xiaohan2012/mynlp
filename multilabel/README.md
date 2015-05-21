@@ -13,24 +13,62 @@ To see the effects of different distance metrics on the label clustering process
 - jaccard
 - braycurtis
 
-See the code for more details
+See the code for more details.
+
+# exp_util.py
+
+Utility that fit data and evaluate the result
 
 
-# Current server
-ukko141
+# Experiments
 
+## Distance metirc comparison
 
-# Notes & Observations
+Refer to `result/distance_metric_and_dimension_reduction.txt`
 
-1. Random projection is better than PCA
-2. Cosine is slightly better than Euclidean
+I compared `cosine` and `euclidean`. Subjectivley, `cosine` produces better Clustering.
 
-See `results.txt` for more.
+For the final score, `cosine` performs slightly better than `euclidean`
 
+## Dimension reduction methods comparison
+
+Refer to `result/distance_metric_and_dimension_reduction.txt`
+
+`PCA` is much worse than `Random Projection`
+
+## Comparison between BR and HOMER
+
+Refer to `result/distance_metric_and_dimension_reduction.txt`
+
+Possible reasons why HOMER is worse:
+
+- The label frequency distribution is parse. There are quite a few labels with only one example. Refer to `figures/figures/sector_label_frequency_histogram.png`
+
+Then maybe we can try *Classifier Chains for Multi-label Classification*, which fights the sparsity problem while considers some level of label dependency.
+
+## Comparing BR and HOMER on delicious dataset
+
+Applied `LinearSVC` and `GaussianNB` on `HOMER` and `Binary Relevance` method. See `result/*.txt` for results.
+
+Conclusion:
+
+- BR is better than HOMER.
+- Performance of BR is not as bad as the on described in the original paper
+
+If I try to replicate the experiment in the original paper, which uses `BernoulliNB`, the result is `HOMER` is better than `BR`.
+
+So, the selection of classifier matters as well and `LinearSVC` is generally better.
+
+Comment about the experiment in original paper:
+
+It's not comprehensive and maybe more methods and more data sets should be used.
 
 # Thinking:
 1. What the possibly reasons that BR is better?
+2. When is `HOMER` better and when is `BR` better?
 
-For each classifier, BR uses more data than HOMER.
 
-Maybe I should read more on how the algorithms splits the data
+
+
+
+

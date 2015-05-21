@@ -7,6 +7,7 @@ from scipy import sparse
 
 
 def _construct_hierarchy_recursively(Y, labels, k,
+                                     metric='cosine',
                                      max_iter=20,
                                      random_state=None,
                                      verbose=False):
@@ -22,6 +23,7 @@ def _construct_hierarchy_recursively(Y, labels, k,
             hierarchy = []
 
             label_partitions = _balanced_kmeans(Y, k, max_iter=max_iter,
+                                                metric=metric,
                                                 random_state=random_state)
             if verbose:
                 print "Partitioned %r into:" % sorted(labels)
@@ -33,10 +35,12 @@ def _construct_hierarchy_recursively(Y, labels, k,
                 partition = list(partition)
                 subset_labels = [labels[ind] for ind in partition]
                 
+                # TODO: should we try to use the entire instance space?
                 rows = np.nonzero(np.any(Y[:, partition], axis=1))[0]
                 cols = np.array(partition)
-
-                subset_Y = Y[rows[:, np.newaxis], cols]
+                
+                # subset_Y = Y[rows[:, np.newaxis], cols]
+                subset_Y = Y[:, cols]  # use all the rows
                 ans = aux(subset_Y,
                           subset_labels,
                           k)
@@ -47,6 +51,7 @@ def _construct_hierarchy_recursively(Y, labels, k,
 
 
 def _balanced_kmeans(Y, k,
+                     metric='cosine',
                      centroids=None,
                      max_iter=20,
                      random_state=None):
@@ -91,7 +96,7 @@ def _balanced_kmeans(Y, k,
 
         for l in labels:
             sorted_centroids = np.argsort(
-                pairwise_distances(centroid_vecs, Y_t[l, :], metric='cosine').flatten())
+                pairwise_distances(centroid_vecs, Y_t[l, :], metric=metric).flatten())
 
             for i in sorted_centroids.flatten():
                 c = centroids[i]
@@ -129,6 +134,7 @@ def _rec_flatten(rec_lst):
 
 class HOMER(object):
     def __init__(self, base_clf, k,
+                 metric='cosine',
                  max_iter=20, random_state=None, verbose=False):
         '''
         base_clf: the underlying multilabel classifier
@@ -136,6 +142,7 @@ class HOMER(object):
         self.base_clf = base_clf
         self.k = k
         self.random_state = random_state
+        self.metric = metric
         self.max_iter = max_iter
         self.verbose = verbose
         
@@ -163,7 +170,8 @@ class HOMER(object):
 
         label_hierarchy = _construct_hierarchy_recursively(
             y,
-            labels= self._labels_indices,
+            labels=self._labels_indices,
+            metric=self.metric,
             k=self.k,
             random_state=self.random_state,
             max_iter=self.max_iter)
@@ -173,6 +181,7 @@ class HOMER(object):
             print _construct_hierarchy_recursively(
                 y,
                 labels= self._labels_names,
+                metric=self.metric,
                 k=self.k,
                 random_state=self.random_state,
                 max_iter=self.max_iter,
@@ -193,8 +202,13 @@ class HOMER(object):
 
                 y_bin = np.transpose(y_bin)  # why transpose?see the above line
                 row_inds = np.any(y_bin, axis=1)
+
+                if not row_inds.any():
+                    raise ValueError("Zero rows are selected for partition %r" % flattened_partitions)
+
                 sub_X = X[row_inds, :]
                 sub_y = y_bin[row_inds, :]
+
                 clf = clone(self.base_clf).fit(sub_X, sub_y)
                 
                 if self.verbose:

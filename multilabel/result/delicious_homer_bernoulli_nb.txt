@@ -1,0 +1,28 @@
+Using model:  <homer.HOMER object at 0x234c7d0>
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 142.85 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.04
+
+Accuracy(Jaccard): 0.11
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(example) : 0.16  0.25  0.19
+
+Precision/Recall/F1(micro) : 0.17  0.26  0.20
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.08  0.08  0.06

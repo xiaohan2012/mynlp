@@ -1,0 +1,127 @@
+                                                         Electronics
+Electronics                                                        0
+Finance, Banking                                                   1
+Environment, Hazardous Waste                                       1
+Road Transport, Parking                                            1
+Non-Ferrous Metals, Molybdenum                                     1
+Electrical, Electric Motors                                        1
+Government, Industrial Policy                                      1
+Labour Market, Trade Unions, Employer Organisations                1
+Non-Ferrous Metals, Titanium                                       1
+Consumer Protection                                                1
+Patents, Trademarks                                                1
+Tax Havens                                                         1
+MANAGEMENT                                                         1
+QUALITY                                                            1
+Minerals, Apatite, Phosphorite                                     1
+Chemicals, Agrichemicals                                           1
+Legal Issues                                                       1
+Textiles, Yarns                                                    1
+Carpets                                                            1
+Commodities, Cotton                                                1
+Training Companies                                                 1
+Minerals, Sand                                                     1
+Non-Ferrous Metals, Silicon                                        1
+Environment, Environmental Awareness                               1
+Corporate Travel, Corporate Entertainment                          1
+Traffic Management Systems                                         1
+Engineering, Passenger Shipbuilding                                1
+Politics, Head of State                                            1
+Health, Contraceptives                                             1
+Safety Equipment                                                   1
+...                                                              ...
+Paper Packaging                                                    1
+Sports Equipment                                                   1
+Vending Machines                                                   1
+Macroeconomics, Productivity, Competitiveness                      1
+Labour Market, Social Policy                                       1
+Non-Ferrous Metals, Nickel                                         1
+Engineering, Railway Rolling Stock, Trains, Locomotives            1
+Engineering, Pumps, Valves                                         1
+Electronics, Passive Components                                    1
+Tax-free sales, Duty-free                                          1
+Electrical Power Generation, Nuclear                               1
+GLASS                                                              1
+Toys, Games                                                        1
+Retailing, Hardware, DIY, Building Trade                           1
+Optical & Photographic                                             1
+Commodities, Cocoa                                                 1
+Health, Medical Techniques & Transplants                           1
+Government, Macroeconomics, Monetary Policy                        1
+Passemger Shipping Transport                                       1
+Textiles                                                           1
+Finance, Bank Regulation, Financial Regulation                     1
+Commodities, Natural Sweeteners, Sugar                             1
+Construction, Process Plant Engineering                            1
+Forest Industry, Wooden Structures, Building Supplies              1
+Research & Development                                             1
+Leather                                                            1
+Consumer Electronics, Brown Goods, TV & Video Equipment            1
+Insurance Brokers, Advisors                                        1
+Engineering, Machinery                                             1
+Pressurised Air Slurry Systems                                     1
+
+[704 rows x 1 columns]                                                                              Construction
+Construction                                                                             0
+Finance, Banking                                                                         1
+Road Transport, Parking                                                                  1
+Non-Ferrous Metals, Molybdenum                                                           1
+Electrical, Electric Motors                                                              1
+Government, Industrial Policy                                                            1
+Labour Market, Trade Unions, Employer Organisations                                      1
+Non-Ferrous Metals, Titanium                                                             1
+Patents, Trademarks                                                                      1
+Commodities, Cotton                                                                      1
+Tax Havens                                                                               1
+MANAGEMENT                                                                               1
+QUALITY                                                                                  1
+Minerals, Apatite, Phosphorite                                                           1
+Chemicals, Agrichemicals                                                                 1
+Legal Issues                                                                             1
+Textiles, Yarns                                                                          1
+Carpets                                                                                  1
+Business Customs, Ethical & Moral Issues, wider responsibilities of business             1
+Environment, Hazardous Waste                                                             1
+Macroeconics, Money Supply                                                               1
+Consumer Protection                                                                      1
+Minerals, Sand                                                                           1
+Corporate Travel, Corporate Entertainment                                                1
+Traffic Management Systems                                                               1
+Engineering, Passenger Shipbuilding                                                      1
+Politics, Head of State                                                                  1
+Health, Contraceptives                                                                   1
+Safety Equipment                                                                         1
+Labour Market, Training, Skills                                                          1
+...                                                                                    ...
+Paper Packaging                                                                          1
+Sports Equipment                                                                         1
+Vending Machines                                                                         1
+Macroeconomics, Productivity, Competitiveness                                            1
+Labour Market, Social Policy                                                             1
+Non-Ferrous Metals, Nickel                                                               1
+Engineering, Railway Rolling Stock, Trains, Locomotives                                  1
+Engineering, Pumps, Valves                                                               1
+Electronics, Passive Components                                                          1
+Tax-free sales, Duty-free                                                                1
+Electrical Power Generation, Nuclear                                                     1
+GLASS                                                                                    1
+Toys, Games                                                                              1
+Retailing, Hardware, DIY, Building Trade                                                 1
+Optical & Photographic                                                                   1
+Commodities, Cocoa                                                                       1
+Health, Medical Techniques & Transplants                                                 1
+Government, Macroeconomics, Monetary Policy                                              1
+Passemger Shipping Transport                                                             1
+Textiles                                                                                 1
+Finance, Bank Regulation, Financial Regulation                                           1
+Commodities, Natural Sweeteners, Sugar                                                   1
+Construction, Process Plant Engineering                                                  1
+Forest Industry, Wooden Structures, Building Supplies                                    1
+Research & Development                                                                   1
+Leather                                                                                  1
+Consumer Electronics, Brown Goods, TV & Video Equipment                                  1
+Insurance Brokers, Advisors                                                              1
+Engineering, Machinery                                                                   1
+Pressurised Air Slurry Systems                                                           1
+
+[704 rows x 1 columns]

@@ -1,0 +1,223 @@
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 191.87 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.07
+
+Accuracy(Jaccard): 0.04
+
+Precision/Recall/F1(example) : 0.05  0.12  0.07
+
+Precision/Recall/F1(micro) : 0.04  0.11  0.06
+
+Precision/Recall/F1(macro) : 0.07  0.12  0.04
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 230.55 secs
+Subset accuracy: 0.09
+
+Hamming loss: 0.04
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.04  0.08  0.05
+
+Precision/Recall/F1(micro) : 0.06  0.07  0.06
+
+Precision/Recall/F1(macro) : 0.06  0.07  0.04
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 205.16 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.06
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.05  0.09  0.06
+
+Precision/Recall/F1(micro) : 0.04  0.09  0.05
+
+Precision/Recall/F1(macro) : 0.06  0.08  0.03
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 234.74 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.05
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.05  0.09  0.06
+
+Precision/Recall/F1(micro) : 0.04  0.08  0.06
+
+Precision/Recall/F1(macro) : 0.06  0.08  0.03
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 214.07 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.08
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.05  0.11  0.06
+
+Precision/Recall/F1(micro) : 0.03  0.10  0.04
+
+Precision/Recall/F1(macro) : 0.07  0.14  0.04
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 208.52 secs
+Subset accuracy: 0.03
+
+Hamming loss: 0.06
+
+Accuracy(Jaccard): 0.04
+
+Precision/Recall/F1(example) : 0.05  0.11  0.06
+
+Precision/Recall/F1(micro) : 0.04  0.10  0.06
+
+Precision/Recall/F1(macro) : 0.06  0.09  0.04
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 222.06 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.07
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.04  0.11  0.06
+
+Precision/Recall/F1(micro) : 0.03  0.10  0.05
+
+Precision/Recall/F1(macro) : 0.06  0.12  0.04
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in samples with no true labels.
+  'recall', 'true', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+12920 samples, 500 features of training set:
+
+label number: 983
+label cardinality: 19.05
+label density: 0.02
+label diversity: 12714.00
+normalized label diversity: 0.98
+Training takes 243.10 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.06
+
+Accuracy(Jaccard): 0.03
+
+Precision/Recall/F1(example) : 0.05  0.09  0.06
+
+Precision/Recall/F1(micro) : 0.03  0.08  0.05
+
+Precision/Recall/F1(macro) : 0.06  0.10  0.04

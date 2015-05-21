@@ -1,0 +1,124 @@
+################# Cosine HOMER RandomProjection(all rows during label clustering)
+Training takes 240.84 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.01
+
+Accuracy(Jaccard): 0.06
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.08  0.20  0.10
+
+Precision/Recall/F1(micro) : 0.09  0.19  0.13
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.07  0.12  0.08
+
+################# Cosine HOMER RandomProjection
+Training takes 229.10 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.01
+
+Accuracy(Jaccard): 0.06
+nnn
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.08  0.20  0.10
+
+Precision/Recall/F1(micro) : 0.09  0.19  0.13
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.07  0.12  0.08
+
+
+################# Euclidean HOMER RandomProjection
+Training takes 222.45 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.01
+
+Accuracy(Jaccard): 0.06
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.07  0.19  0.10
+
+Precision/Recall/F1(micro) : 0.09  0.17  0.12
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.07  0.12  0.08
+
+
+
+######## Cosine HOMER PCA
+
+Subset accuracy: 0.00
+
+Hamming loss: 0.01
+
+Accuracy(Jaccard): 0.02
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.03  0.06  0.04
+
+Precision/Recall/F1(micro) : 0.06  0.06  0.06
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.02  0.03  0.02
+
+######## Euclidean HOMER PCA
+
+Training takes 79.23 secs
+Subset accuracy: 0.00
+
+Hamming loss: 0.01
+
+Accuracy(Jaccard): 0.02
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.03  0.06  0.04
+
+Precision/Recall/F1(micro) : 0.06  0.06  0.06
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.01  0.02  0.01
+
+############## Euclidean BR
+
+Training takes 420.69 secs
+Subset accuracy: 6.30
+
+Hamming loss: 0.00
+
+Accuracy(Jaccard): 0.14
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in samples with no predicted labels.
+  'precision', 'predicted', average, warn_for)
+Precision/Recall/F1(example) : 0.22  0.17  0.18
+
+Precision/Recall/F1(micro) : 0.54  0.14  0.22
+
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:958: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/cs/fs/home/hxiao/.local/lib/python2.7/site-packages/sklearn/metrics/classification.py:960: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+Precision/Recall/F1(macro) : 0.28  0.11  0.14

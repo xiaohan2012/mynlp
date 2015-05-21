@@ -57,6 +57,7 @@ def label_diversity(y):
 
     return len(values)
 
+
 def normalized_label_diversity(y):
     """
     The number of unique label assignment divided by example number
@@ -66,3 +67,13 @@ def normalized_label_diversity(y):
     0.75
     """
     return label_diversity(y) / float(y.shape[0])
+
+
+def label_summary(y):
+    s = ""
+    s += "\nlabel number: %d" % y.shape[1]
+    s += "\nlabel cardinality: %.2f" % (label_cardinality(y))
+    s += "\nlabel density: %.2f" % (label_density(y))
+    s += "\nlabel diversity: %.2f" % (label_diversity(y))
+    s += "\nnormalized label diversity: %.2f" % (normalized_label_diversity(y))
+    return s
