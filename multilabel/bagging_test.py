@@ -67,12 +67,14 @@ test_y = load(open('data/del_y_test.pkl')).todense()
 
 
 model = MultilabelBaggingClassifier(base_estimator=OneVsRestClassifier(GaussianNB(),
-                                                                       n_jobs=1),
+                                                                       n_jobs=-1),
                                     n_estimators=20,
                                     n_jobs=-1,
-                                    verbose=1)
+                                    verbose=2)
 
 model.fit(train_X, train_y)
+
+print "Making predictions..."
 
 pred_y = model.predict(test_X)
 
@@ -105,9 +107,13 @@ def print_summary(test_y, pred_y):
 
 print_summary(test_y, pred_y)
 
-model2 = OneVsRestClassifier(GaussianNB(),
-                             n_jobs=-1)
+# print "single model case..."
 
-model2.fit(train_X, train_y)
+# model2 = OneVsRestClassifier(GaussianNB(),
+#                              n_jobs=-1)
 
-print_summary(test_y, model2.predict(test_X))
+# model2.fit(train_X, train_y)
+
+# print_summary(test_y, model2.predict(test_X))
+
+

@@ -19,6 +19,9 @@ See the code for more details.
 
 Utility that fit data and evaluate the result
 
+# bagging_test.py
+
+Experiment on bagging
 
 # Experiments
 
@@ -63,12 +66,63 @@ Comment about the experiment in original paper:
 
 It's not comprehensive and maybe more methods and more data sets should be used.
 
+## Ensemble(bagging) experiment
+
+Test whether ensemble helps for the delicious data
+
+Refer result to `result/delicious_ensemble.txt`
+
+Conclusion:
+
+Ensemble helps to some extent, but not very much.
+
+Maybe it's because the number of ensembles is small(16 in this case).
+
+## Classifier-chain experiment
+
+delicous data, SVM, compared to BR
+
+Related to `result/delicious_cc_gaussian_nb.txt`
+
+Comment:
+
+CC seems to be better:
+
+CC achieves generally higher F-score, but recall is much lower.
+
 # Thinking:
 1. What the possibly reasons that BR is better?
 2. When is `HOMER` better and when is `BR` better?
 
+# Things to keep in mind:
+
+- classifier matters(NB, SVM, etc..)
+- Dataset matters
+
+# Spark related
+
+## If encountering JAVA HEAP error
+
+Try to set both to higher values:
+
+1. `spark.executor.memory`
+2. `spark.driver.memory`
 
 
+This can happen on both the master and worker machines.
 
+## Is it really fast?
 
+After running `bagging_test.py`
 
+The time is:
+
+```
+real	11m42.232s
+user	79m21.462s
+sys	0m59.712s
+```
+
+Training is fast, took `160,014781 s`
+
+Then what part makes it so slow?
