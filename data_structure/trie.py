@@ -34,7 +34,7 @@ class Trie(object):
     >>> t.take('a') # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
-    InvalidTransition: "Invalid input 'a'. Valid are ['z']"
+    InvalidTransition: "Invalid input 'a'. Valid are ['z']...
     >>> t.reset()
     >>> t.take('f')
     >>> t.matching_paths()
@@ -54,7 +54,7 @@ class Trie(object):
         self.state = root
         self.path = []
         
-    def add_paths(self, iter_list, last_value_func = None):
+    def add_paths(self, iter_list, last_value_func):
         assert callable(last_value_func)
         
         for iterable in iter_list:
@@ -64,8 +64,13 @@ class Trie(object):
             cur_dict = self.root
             for o in iterable:
                 cur_dict = cur_dict.setdefault(o, {})
-            cur_dict[self.last_key] = last_value_func(iterable)
 
+            self._update_last_key_value(cur_dict, last_value_func(iterable))
+
+    def _update_last_key_value(self, cur_dict, value):
+        """decides how it behaves when value is appended at the leaf node"""
+        cur_dict[self.last_key] = value
+        
     def valid_input(self):
         return [k for k in self.state if k is not self.last_key]
         
@@ -74,7 +79,7 @@ class Trie(object):
             self.path.append(key)
             self.state = self.state[key]
         else:
-            raise InvalidTransition("\"Invalid input %r. Valid are %r\"" %(key, self.valid_input()))
+            raise InvalidTransition("\"Invalid input %r. Valid are %r. Path are %r\"" %(key, self.valid_input(), self.path))
         
     def matching_paths(self):
         """
@@ -140,28 +145,60 @@ class MultiSetTrie(Trie):
                 cur_dict = cur_dict.setdefault(o, defaultdict(list))
             cur_dict[self.last_key].append(value)
 
-
 class EntityMatchingTrie(Trie):
     """
-
+    Associate each string with a list of entities.
+    
+    For example: `cs` can be mapped to `computer science` or `counter strike`
+    
     >>> t = EntityMatchingTrie()
     >>> t.add_mention('cs', set(['computer science', 'counter strike']))
     >>> t.add_mention('csd', set(['computer science department']))
-    >>> t.matched_keywords('csd')
+    >>> t.add_mention('user assistance and performance support', set(['asdf']))
+    >>> t.proceed('csd')
+    >>> t.matched_keywords()
     set(['computer science department'])
+    >>> t.reset()
+    >>> t.proceed('user')
+    >>> print t.matched_keywords()
+    None
     """
+
     def add_mention(self, mention, entities):
         self.add_paths([mention], lambda o: entities)
 
-    def matched_keywords(self, s):
+    def proceed(self, s):
         for c in s:
-            try:
-                self.take(c)
-            except InvalidTransition:
-                return []
+            self.take(c)
 
+    def matched_keywords(self):
         # wierd order
-        ans = max(self.matching_paths(), 
-                  key = lambda (path, val): len(path))[1]
-        self.reset()
-        return ans
+        return self.terminal_values()
+
+
+class StringMatchingTrie(Trie):
+    """
+    More methods that proceed with `string` by wrapping a series of `character` state transitions.
+    
+    >>> t = StringMatchingTrie()
+    >>> t.add_string('cs')
+    >>> t.add_string('csd')
+    >>> t.add_string('user assistance and performance support')
+    >>> t.proceed('csd')
+    >>> t.matched_string()
+    'csd'
+    >>> t.reset()
+    >>> t.proceed('user')
+    >>> print t.matched_string()
+    None
+    """
+
+    def add_string(self, string):
+        self.add_paths([string], lambda o: string)
+
+    def proceed(self, s):
+        for c in s:
+            self.take(c)
+
+    def matched_string(self):
+        return self.terminal_values()
