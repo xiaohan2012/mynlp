@@ -30,7 +30,7 @@ def infer_lda_topics(model, corpus):
 
 
 if __name__ == "__main__":
-    N_TOPICS = 100
+    N_TOPICS = 200
     SAMPLE_N = 10000
     RANDOM_STATE = 0
     
@@ -54,6 +54,11 @@ if __name__ == "__main__":
 
     train_lda_repr = infer_lda_topics(model, train_corpus)
     test_lda_repr = infer_lda_topics(model, convert_to_gensim_corpus(test_X))
+
+    print "train_lda_repr.shape: {}".format(train_lda_repr.shape)
+    print "test_lda_repr.shape: {}".format(test_lda_repr.shape)
     
-    pkl.dump(train_lda_repr, open('data/train_X_lda_rng_0.pkl', 'w'))
-    pkl.dump(test_lda_repr, open('data/test_X_lda_rng_0.pkl', 'w'))
+    pkl.dump(train_lda_repr, 
+             open('data/train_X_lda_ntopic_{}_rng_{}.pkl'.format(N_TOPICS, RANDOM_STATE), 'w'))
+    pkl.dump(test_lda_repr, 
+             open('data/test_X_lda_ntopic_{}_rng_{}.pkl'.format(N_TOPICS, RANDOM_STATE), 'w'))

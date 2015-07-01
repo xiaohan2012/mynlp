@@ -25,7 +25,7 @@ Experiment on bagging
 
 # Experiments
 
-## Distance metirc comparison
+## Distance metirc comparison(HOMER)
 
 Refer to `result/distance_metric_and_dimension_reduction.txt`
 
@@ -126,3 +126,9 @@ sys	0m59.712s
 Training is fast, took `160,014781 s`
 
 Then what part makes it so slow?
+
+
+# Dimension Reduction
+
+Refer to  `dim_reduct.py`
+
