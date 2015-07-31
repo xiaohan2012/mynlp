@@ -1,19 +1,24 @@
 import sys
 
-TOKENIZE="tokenize"
+TOKENIZE = "tokenize"
 DIGITALIZE = "digit"
 LOWERCASE = "lower"
+WORD_LENGTH_FILTER = "wordlen"
 STEM = "stem"
 
-ALL_PIPELINE_NAMES = [TOKENIZE, DIGITALIZE, LOWERCASE, STEM]
-DEFAULT_PIPELINE_NAMES = [TOKENIZE, DIGITALIZE, LOWERCASE]
+ALL_PIPELINE_NAMES = [TOKENIZE, WORD_LENGTH_FILTER,
+                      DIGITALIZE, LOWERCASE, STEM]
+DEFAULT_PIPELINE_NAMES = [TOKENIZE, WORD_LENGTH_FILTER,
+                          DIGITALIZE, LOWERCASE]
 
 _pipelines = {p: None
-             for p in ALL_PIPELINE_NAMES}
+              for p in ALL_PIPELINE_NAMES}
+
 
 def is_loaded(name):
     global _pipelines
     return _pipelines[name] is not None
+
 
 def load_pipeline(name):
     """
@@ -38,18 +43,23 @@ def load_pipeline(name):
         elif name == STEM:
             from stem import Stemmer
             obj = Stemmer()
+        elif name == WORD_LENGTH_FILTER:
+            from word_len import WordLengthFilter
+            obj = WordLengthFilter()
         else:
-            raise ValueError("Invalid pipeline name '%s'" %(name))
+            raise ValueError("Invalid pipeline name '%s'" % (name))
         
         _pipelines[name] = obj
-        sys.stderr.write("%s loaded\n" %(name))
+        sys.stderr.write("%s loaded\n" % (name))
         return obj
     else:
         return _pipelines[name]
+
     
-def transform(stuff, pipelines = DEFAULT_PIPELINE_NAMES):
+def transform(stuff, pipelines=DEFAULT_PIPELINE_NAMES):
     """
-    >>> transform(["A1", "a12", "C3"], pipelines = ["lower", "digit"])
+    >>> transform(["A1", "a12", "C3", "a"],
+    ... pipelines = ["lower", "wordlen", "digit"])
     ['aDIGIT', 'aDIGITDIGIT', 'cDIGIT']
     >>> transform("A1 a12 C3", pipelines = ["lower", "digit"])
     'aDIGIT aDIGITDIGIT cDIGIT'

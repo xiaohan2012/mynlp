@@ -1,5 +1,7 @@
 import re
 from base import Base
+
+
 class Digitalizer(Base):
     """
     Transform digit to certain token
