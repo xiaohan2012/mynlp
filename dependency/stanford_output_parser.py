@@ -329,18 +329,14 @@ def parse_output(obj):
 
 
 if __name__ == "__main__":
-    import argparse, os
+    import argparse
+    import os
     from codecs import open
         
     parser = argparse.ArgumentParser("Parse and visualize Dependence parse tree file(produced by Stanford CoreNLP package). Output is dot file")
     parser.add_argument("-i", type=str, required = True, nargs="+",
                         dest = "input_paths",
                         help = "Input file paths"
-    )
-
-    parser.add_argument("--display", 
-                        action = "store_true",
-                        help = "Wheter to display or not"
     )
     
     parser.add_argument("-o", type=str, nargs="+",
@@ -356,8 +352,8 @@ if __name__ == "__main__":
             rs = parse_output(f_in)
             
             if args.output_dir:
+                output_path = os.path.join(args.output_dir, file_name + ".dot")
                 with open(output_path, "w", "utf8") as f_out:
-                    output_path = os.path.join(args.output_dir, file_name + ".dot")
                     for r in rs:
                         f_out.write(r.to_dot() + '\n')
             else:

@@ -17,7 +17,7 @@ X = loadmat(X_path)['featureData']
 # X = loadmat(X_path)['projection']
 
 if RANDOM_PROJECTION_FLAG:
-    from sklearn.random_projection import SparseRandomProjection
+    from sklearn.random_projnection import SparseRandomProjection
 
     print "Applying random projection to reduce dimension"
     print "Shape before: %r" % (X.shape, )

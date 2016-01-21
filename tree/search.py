@@ -3,9 +3,11 @@ from mynlp.tree.regexp import MatchAllNode
 
 def search_by_exact_string_matching(tree, string):
     """search the parent node that contains the string"""
+    string = string.lower()
     def aux(node):
         if isinstance(node, Tree):
             node_string = ' '.join(node.leaves())
+            node_string = node_string.lower()
             if node_string == string:
                 return [node]
             elif string in node_string:

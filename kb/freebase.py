@@ -79,4 +79,5 @@ class FreebaseAnnotator(object):
         return ans
 
 if __name__ == "__main__":
-    FreebaseAnnotator('models/freebase.pkl','/cs/taatto/home/hxiao/product_classification/resources/freebase')
+    # FreebaseAnnotator('models/freebase.pkl','/cs/taatto/home/hxiao/product_classification/resources/freebase')
+    FreebaseAnnotator('models/freebase-test.pkl', '/cs/fs/home/hxiao/code/mynlp/test/data/freebase')
